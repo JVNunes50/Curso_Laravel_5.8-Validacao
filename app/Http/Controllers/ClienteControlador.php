@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cliente;
 use Illuminate\Http\Request;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class ClienteControlador extends Controller
 {
@@ -36,12 +37,27 @@ class ClienteControlador extends Controller
      */
     public function store(Request $request)
     {
+        $regras = [
+            'nome'=>'required|min:3|max:20|unique:clientes',
+            'idade'=>'required',
+            'endereco'=>'required|min:5',
+            'email'=>'required|email',
+        ];
+        $mensagens=[
+            'required'=>'O campo :attribute não pode estar em branco', // Mensagem generica, vai para todos
+            'email.email'=>'Digite um e-mail valido',
+        ];
+        $request->validate($regras, $mensagens);
+
+        /*
         $request->validate([
             'nome'=>'required|min:3|max:20|unique:clientes',
             'idade'=>'required',
             'endereco'=>'required|min:5',
             'email'=>'required|email',
         ]);
+        */
+        
         $cliente = new Cliente();
         $cliente = Cliente::create([
             'nome'=>$request->input('nome'),
