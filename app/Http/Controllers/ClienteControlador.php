@@ -45,6 +45,9 @@ class ClienteControlador extends Controller
         ];
         $mensagens=[
             'required'=>'O campo :attribute não pode estar em branco', // Mensagem generica, vai para todos
+            'nome.min'=>'O minimo de catacteres é 3',
+            'nome.max'=>'O maximo de catacteres é 20',
+            'nome.unique'=>'Esse nome ja existe no sistema',
             'email.email'=>'Digite um e-mail valido',
         ];
         $request->validate($regras, $mensagens);
