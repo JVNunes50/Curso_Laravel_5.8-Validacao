@@ -36,7 +36,15 @@ class ClienteControlador extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cliente = new Cliente();
+        $cliente = Cliente::create([
+            'nome'=>$request->input('nome'),
+            'idade'=>$request->input('idade'),
+            'endereco'=>$request->input('endereco'),
+            'email'=>$request->input('email'),
+        ]);
+        $cliente->save();
+        return redirect('/');
     }
 
     /**
