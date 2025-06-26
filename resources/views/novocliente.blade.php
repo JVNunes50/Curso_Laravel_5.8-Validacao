@@ -45,9 +45,16 @@
                             <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
                             <button type="cancel" class="btn btn-primary btn-sm">Cancelar</button>                         
                         </form>                            
-                        </form>                            
-                        </form>
                     </div>
+                    @if ($errors->any())
+                        <div class="card-footer">
+                            @foreach ($errors->all() as $error)
+                                <div class="alert alert-danger" role="alert">
+                                    {{ $error }}
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

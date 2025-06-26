@@ -36,6 +36,9 @@ class ClienteControlador extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nome'=>'required'
+        ]);
         $cliente = new Cliente();
         $cliente = Cliente::create([
             'nome'=>$request->input('nome'),
